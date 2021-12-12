@@ -5,21 +5,23 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.Collection;
+
 /**
  * контроллер
  */
 @RestController
 @RequestMapping("/employee")
 public class EmployeeController {
-    private final IEmployeeService employeeService;
+    private final EmployeeService employeeService;
 
     public EmployeeController(EmployeeServiceImpl employeeService) {
         this.employeeService = employeeService;
     }
 
     @GetMapping("/print")
-    public String printDepartment() {
-        return employeeService.printEmployee();
+    public Collection<Employee> printDepartment() {
+        return employeeService.getEmployee();
     }
 
     @GetMapping("/add")
